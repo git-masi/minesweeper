@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- modern normalize CSS -->
+    <!-- https://github.com/sindresorhus/modern-normalize -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css"
+    />
+  </head>
+
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <header>
+      <form id="configGame">
+        <label>
+          Game Size:
+          <input
+            name="size"
+            type="number"
+            value="4"
+            min="3"
+            max="9"
+            required
+            placeholder="Min 3, Max 9"
+          />
+        </label>
+
+        <div>
+          <span>min</span>
+          <input
+            name="numMinesSetting"
+            class=""
+            type="range"
+            min="1"
+            value="1"
+            max="5"
+            step="1"
+            list="ticks"
+          />
+          <datalist id="ticks">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </datalist>
+          <span>max</span>
+        </div>
+        <button type="submit">Start</button>
+      </form>
+
+      <div>
+        <h3>Number of mines: <span id="numFlagsDisplay"></span></h3>
+      </div>
+
+      <button id="resetButton">Reset</button>
+    </header>
+
+    <main>
+      <div class="victoryImage hide"></div>
+
+      <div id="gameBoard"></div>
+
+      <button id="replayButton" class="hide">Play Again?</button>
+    </main>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>

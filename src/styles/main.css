@@ -1,0 +1,135 @@
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  /* dynamically added via JS */
+  --board-size: ;
+  --size: ;
+  --translate-length: ;
+  /* /dynamically added via JS */
+
+  --header-height: 10vh;
+  --border: 1px solid black;
+  --gray: #c8d6e5;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 2rem;
+  background: var(--gray);
+}
+
+header,
+main {
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+}
+
+main {
+  position: relative;
+  height: calc(100vh - var(--header-height));
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(var(--size), 1fr);
+  grid-template-rows: repeat(var(--size), 1fr);
+  height: calc(var(--size) * 50px);
+  width: calc(var(--size) * 50px);
+
+  background: ghostwhite;
+  border-top: var(--border);
+  border-left: var(--border);
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: var(--border);
+  border-bottom: var(--border);
+}
+
+.covered::before,
+.flagged::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.covered::before {
+  background: gainsboro;
+}
+
+.flagged::before {
+  background: gainsboro
+    url('https://gitmasi.com/assets/phaser/getting-started/pix_flag_red-512.png')
+    center center/cover;
+}
+
+.mine {
+  background: url('https://gitmasi.com/assets/phaser/getting-started/blue-bomb-pixel-art.png')
+    center center/cover;
+}
+
+.victoryImage {
+  position: absolute;
+  z-index: 99;
+  background: url(https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif) top
+    center/cover;
+  width: var(--board-size);
+  max-width: 200px;
+  height: var(--board-size);
+  max-height: 200px;
+  border-radius: 50%;
+}
+
+.animateVictoryImage {
+  animation: moveVictoryImage 6s linear infinite forwards;
+}
+
+@keyframes moveVictoryImage {
+  0% {
+    transform: translate(0px 0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(var(--translate-length), 0px) rotate(90deg);
+  }
+
+  50% {
+    transform: translate(var(--translate-length), var(--translate-length))
+      rotate(180deg);
+  }
+
+  75% {
+    transform: translate(0px, var(--translate-length)) rotate(270deg);
+  }
+
+  100% {
+    transform: translate(0px, 0px) rotate(360deg);
+  }
+}
+
+.hide {
+  display: none !important;
+}
